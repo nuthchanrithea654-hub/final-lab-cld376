@@ -1,0 +1,38 @@
+
+# ==========================================
+# SERVICE 1: API Gateway
+# ==========================================
+apiVersion: v1
+kind: Service
+metadata:
+  name: student-gateway-service
+  namespace: student-exam
+spec:
+  type: ClusterIP
+  selector:
+    app: student-core
+  ports:
+    - name: http
+      protocol: TCP
+      port: 3000
+      targetPort: 3000
+
+---
+
+# ==========================================
+# SERVICE 2: Login Microservice
+# ==========================================
+apiVersion: v1
+kind: Service
+metadata:
+  name: student-login-service
+  namespace: student-exam
+spec:
+  type: ClusterIP
+  selector:
+    app: student-login
+  ports:
+    - name: http
+      protocol: TCP
+      port: 3002
+      targetPort: 3002
